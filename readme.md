@@ -1,14 +1,9 @@
-#
+# MIDI
 
-## Credits
-- [Normalize.css][]
-- [jQuery][]
-
-[normalize.css]: http://necolas.github.io/normalize.css/
-[jquery]:        http://jquery.com/
+This is a collaborative music perfomance tool. Made for PennApps X, Fall 2014.
 
 ## License
 
 MIT licensed
 
-Copyright (c) 2013 Giles Lavelle
+Copyright (c) 2014 Giles Lavelle
