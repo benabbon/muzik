@@ -21,7 +21,8 @@ Keyboard = Backbone.View.extend({
     that = this
     @keyselector = new KeySelector()
     @scaleselector = new ScaleSelector()
-    @keys = (new Key({index: i, parent: that}) for i in [0...7])
+    @num_notes = 8
+    @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
 
   render: ->
     for key in @keys

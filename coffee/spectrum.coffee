@@ -6,4 +6,5 @@ module.exports = [
   '#3498db'
   '#8e44ad'
   '#9b59b6'
+  '#c0392b'
 ]
