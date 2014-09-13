@@ -6,14 +6,12 @@ template = '''
 <div class="button"></div>
 '''
 
-C0 = 12
+A0 = 21
 octave = 3
 notes_per_octave = 12
 
 scales =
   major: [0, 2, 4, 5, 7, 9, 11, 12]
-
-root = C0 + octave * notes_per_octave
 
 socket = new WebSocket(host)
 
@@ -27,6 +25,7 @@ Key = Backbone.View.extend({
   initialize: (opts) ->
     @index = opts.index
     @colour = spectrum[opts.index]
+    @parent = opts.parent
 
   render: (index, colour) ->
     @$el.html(template)
@@ -38,8 +37,11 @@ Key = Backbone.View.extend({
     @button.addClass('active')
     setTimeout((=> @button.removeClass('active')), 250)
 
+    key = parent.keyselector.idx
+    note = A0 + (octave * notes_per_octave) + key + scales.major[@index]
+
     request = JSON.stringify({
-      note: root + scales.major[@index]
+      note: note
       velocity: 100
       start: 0
     })
