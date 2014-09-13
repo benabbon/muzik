@@ -4,12 +4,14 @@ template = '''
 <div class="button"></div>
 '''
 
-C = 24
+C0 = 12
+octave = 3
+notes_per_octave = 12
 
-# major
-notes = [0, 2, 4, 5, 7, 9, 11, 12]
+scales =
+  major: [0, 2, 4, 5, 7, 9, 11, 12]
 
-root = C
+root = C0 + octave * notes_per_octave
 
 spectrum = [
   '#c0392b'
@@ -39,7 +41,7 @@ Key = Backbone.View.extend({
 
   onClick: ->
     request = {
-      note: root + notes[@index]
+      note: root + scales.major[@index]
       velocity: 100
       start: 0
     }
