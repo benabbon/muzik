@@ -1,3 +1,5 @@
+spectrum = require './spectrum.coffee'
+
 host = 'ws://158.130.167.110:8084/pennApps/sreceive'
 
 template = '''
@@ -12,16 +14,6 @@ scales =
   major: [0, 2, 4, 5, 7, 9, 11, 12]
 
 root = C0 + octave * notes_per_octave
-
-spectrum = [
-  '#c0392b'
-  '#f39c12'
-  '#f1c40f'
-  '#2ecc71'
-  '#3498db'
-  '#8e44ad'
-  '#9b59b6'
-]
 
 socket = new WebSocket(host)
 

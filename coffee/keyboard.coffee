@@ -13,7 +13,7 @@ keymap =
 
 Keyboard = Backbone.View.extend({
   tagName: 'div'
-  className: 'buttons'
+  className: 'keyboard'
 
   initialize: ->
     @keys = (new Key(index: i) for i in [0...7])
