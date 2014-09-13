@@ -1,6 +1,6 @@
 spectrum = require './spectrum.coffee'
 
-host = 'ws://158.130.167.110:8084/pennApps/sreceive'
+host = 'http://localhost:3000'
 
 template = '''
 <div class="button"></div>
@@ -10,10 +10,7 @@ A0 = 21
 octave = 3
 notes_per_octave = 12
 
-scales =
-  major: [0, 2, 4, 5, 7, 9, 11, 12]
-
-socket = new WebSocket(host)
+socket = io.connect(host)
 
 Key = Backbone.View.extend({
   tagName: 'div'
@@ -38,7 +35,10 @@ Key = Backbone.View.extend({
     setTimeout((=> @button.removeClass('active')), 250)
 
     key = @parent.keyselector.idx
-    note = A0 + (octave * notes_per_octave) + key + scales.major[@index]
+
+    scale = @parent.scaleselector.scale.notes
+
+    note = A0 + (octave * notes_per_octave) + key + scale[@index]
 
     request = JSON.stringify({
       note: note
@@ -48,7 +48,7 @@ Key = Backbone.View.extend({
 
     console.log request
 
-    socket.send(request)
+    socket.emit('sound', request)
 
     # $.ajax({
     #   method: 'POST'
