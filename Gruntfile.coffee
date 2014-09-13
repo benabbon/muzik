@@ -34,13 +34,6 @@ module.exports = (grunt) ->
         files: ['stylus/*.styl', 'coffee/*.coffee', 'templates/*.html']
         tasks: ['default']
 
-    jst:
-      compile:
-        files:
-          'js/templates/index.js': ['templates/*.html']
-      options:
-        processName: (filename) -> filename.replace(/templates\/|\.html/gi, '')
-
     connect:
       server:
         options:
@@ -67,5 +60,5 @@ module.exports = (grunt) ->
   for task in contribs
     grunt.loadNpmTasks "grunt-contrib-#{task}"
 
-  grunt.registerTask 'default', ['stylus', 'coffee', 'jst']
+  grunt.registerTask 'default', ['stylus', 'coffee']
   grunt.registerTask 'build', ['default', 'copy', 'uglify']

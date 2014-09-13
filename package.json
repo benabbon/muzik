@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "js/all.js",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-contrib-stylus": "^0.19.0"
+  },
   "devDependencies": {
     "grunt": "*",
     "grunt-contrib-jst": "*",
