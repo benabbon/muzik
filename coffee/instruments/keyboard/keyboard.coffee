@@ -1,7 +1,8 @@
+Instrument = require '../instrument.coffee'
 Key = require './key.coffee'
-KeySelector = require './selectors/keyselector.coffee'
-ScaleSelector = require './selectors/scaleselector.coffee'
-OctaveSelector = require './selectors/octaveselector.coffee'
+KeySelector = require '../../selectors/keyselector.coffee'
+ScaleSelector = require '../../selectors/scaleselector.coffee'
+OctaveSelector = require '../../selectors/octaveselector.coffee'
 
 # Maps keycodes to the index of the note that key should play.
 # Eg. A = 65 = root note in the scale = index 0
@@ -20,7 +21,6 @@ template = '''
 '''
 
 Keyboard = Backbone.View.extend({
-  tagName: 'div'
   className: 'keyboard'
 
   initialize: ->
@@ -35,6 +35,8 @@ Keyboard = Backbone.View.extend({
     @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
 
   render: ->
+    Instrument::render.call(this)
+
     @$el.html(template)
 
     for key in @keys

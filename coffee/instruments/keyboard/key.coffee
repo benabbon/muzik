@@ -1,11 +1,11 @@
-spectrum = require './spectrum.coffee'
-{NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require './constants.coffee'
+spectrum = require '../../spectrum.coffee'
+{NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require '../../constants.coffee'
 
 template = '''
 <div class="button"></div>
 '''
 
-fb = new Firebase('https://muzik.firebaseio.com/keyboard')
+fb = new Firebase(HOST + 'keyboard')
 
 Key = Backbone.View.extend({
   tagName: 'div'

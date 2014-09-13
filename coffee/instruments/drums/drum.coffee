@@ -1,8 +1,9 @@
-spectrum = require './spectrum.coffee'
+spectrum = require '../../spectrum.coffee'
+{HOST} = require '../../constants.coffee'
 
 codes = [24, 26, 27, 30]
 
-fb = new Firebase('https://muzik.firebaseio.com/drums')
+fb = new Firebase(HOST + 'drums')
 
 Drum = Backbone.View.extend({
   tagName: 'div'
