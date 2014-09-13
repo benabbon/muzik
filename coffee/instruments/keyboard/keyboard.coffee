@@ -23,8 +23,10 @@ template = '''
 Keyboard = Backbone.View.extend({
   className: 'keyboard'
 
-  initialize: ->
+  initialize: (opts) ->
     that = this
+    @name = opts.name
+    @id = opts.name
 
     @selectors =
       key: new KeySelector()
@@ -37,6 +39,7 @@ Keyboard = Backbone.View.extend({
   render: ->
     Instrument::render.call(this)
 
+    @$el.attr('id', @id)
     @$el.html(template)
 
     for key in @keys

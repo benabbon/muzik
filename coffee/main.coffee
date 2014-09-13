@@ -4,16 +4,19 @@ Drums = require './instruments/drums/drums.coffee'
 $(document).ready ->
   main = $('.main')
 
-  keyboard = new Keyboard()
+  piano = new Keyboard(name: 'piano')
+  synth = new Keyboard(name: 'synth')
   drums = new Drums()
 
-  instruments = [keyboard, drums]
+  active = piano
+
+  instruments = [piano, synth, drums]
 
   for instrument in instruments
     instrument.render().$el.appendTo(main)
 
   $('body').on 'keydown', (event) ->
-    keyboard.play(event.keyCode)
+    active.play(event.keyCode)
 
   $('.menu .item').each ->
     t = $ this

@@ -1,4 +1,4 @@
-# MIDI
+# μzik
 
 This is a collaborative music perfomance tool. Made for PennApps X, Fall 2014.
 

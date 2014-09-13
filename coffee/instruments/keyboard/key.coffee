@@ -1,3 +1,4 @@
+Button = require '../button.coffee'
 spectrum = require '../../spectrum.coffee'
 {NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require '../../constants.coffee'
 
@@ -7,12 +8,8 @@ template = '''
 
 fb = new Firebase(HOST + 'instrument')
 
-Key = Backbone.View.extend({
-  tagName: 'div'
+Key = Button.extend({
   className: 'column'
-
-  events:
-    'click': 'onClick'
 
   initialize: (opts) ->
     @index = opts.index
@@ -21,13 +18,13 @@ Key = Backbone.View.extend({
 
   render: (index, colour) ->
     @$el.html(template)
-    this.button = @$('.button')
+    @button = @$('.button')
+    @target = @button
     @button.css(background: @colour)
     return this
 
   play: ->
-    @button.addClass('active')
-    setTimeout((=> @button.removeClass('active')), 250)
+    Button::play.call(this)
 
     key = @parent.selectors.key.idx
     scale = @parent.selectors.scale.scale.notes
@@ -36,16 +33,13 @@ Key = Backbone.View.extend({
     note = ROOT_NOTE + (octave * NOTES_PER_OCTAVE) + key + scale[@index]
 
     request = {
-      instrument: 'keyboard'
+      instrument: @parent.name
       note: note
       velocity: 100
       start: 0
     }
 
     fb.push(request)
-
-  onClick: ->
-    @play()
 })
 
 module.exports = Key

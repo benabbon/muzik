@@ -7,13 +7,7 @@ var api = {
   instrument: new Firebase(root + 'instrument'),
 };
 
-var outputs = {
-  keyboard: new midi.output(),
-  drums: new midi.output()
-};
-
-outputs.keyboard.openVirtualPort('keyboard');
-outputs.drums.openVirtualPort('drums');
+var outputs = {};
 
 var Codes = {
   START: 144
@@ -22,6 +16,13 @@ var Codes = {
 api.instrument.on('child_added', function(data) {
   var val = data.val();
   if (val) {
-    outputs[val.instrument].sendMessage([Codes.START, val.note, val.velocity]);
+    var instrument = val.instrument;
+
+    if (!outputs[instrument]) {
+      outputs[instrument] = new midi.output()
+      outputs[instrument].openVirtualPort(instrument)
+    }
+
+    outputs[instrument].sendMessage([Codes.START, val.note, val.velocity]);
   }
 });

@@ -1,3 +1,4 @@
+Button = require '../button.coffee'
 spectrum = require '../../spectrum.coffee'
 {HOST} = require '../../constants.coffee'
 
@@ -5,12 +6,8 @@ codes = [24, 26, 27, 30]
 
 fb = new Firebase(HOST + 'instrument')
 
-Drum = Backbone.View.extend({
-  tagName: 'div'
+Drum = Button.extend({
   className: 'drum'
-
-  events:
-    'click': 'onClick'
 
   initialize: (opts) ->
     @index = opts.index
@@ -18,11 +15,11 @@ Drum = Backbone.View.extend({
 
   render: ->
     this.$el.css(background: @colour)
+    @target = @$el
     return this
 
   play: ->
-    @$el.addClass('active')
-    setTimeout((=> @$el.removeClass('active')), 250)
+    Button::play.call(this)
 
     note = codes[@index] + 12
 
@@ -35,8 +32,6 @@ Drum = Backbone.View.extend({
 
     fb.push(request)
 
-  onClick: ->
-    @play()
 })
 
 module.exports = Drum
