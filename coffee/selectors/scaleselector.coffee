@@ -1,4 +1,6 @@
+{HOST} = require '../constants.coffee'
 Selector = require './selector.coffee'
+fb = new Firebase(HOST + 'scale')
 
 ScaleSelector = Selector.extend({
   initialize: ->
@@ -22,8 +24,11 @@ ScaleSelector = Selector.extend({
   onClick: ->
     @idx++
     @scale = @scales[@idx % @scales.length]
+    fb.push(@scale)
     @render()
 
+  set: (@scale) ->
+    @render()
 })
 
 module.exports = ScaleSelector

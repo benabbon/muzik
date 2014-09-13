@@ -4,7 +4,7 @@ var midi = require('midi');
 var root = 'https://muzik.firebaseio.com/';
 
 var api = {
-  instrument: new Firebase(root + 'instrument'),
+  instrument: new Firebase(root + 'instrument')
 };
 
 var outputs = {};

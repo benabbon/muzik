@@ -1,8 +1,13 @@
+{HOST} = require '../../constants.coffee'
 Instrument = require '../instrument.coffee'
 Key = require './key.coffee'
 KeySelector = require '../../selectors/keyselector.coffee'
 ScaleSelector = require '../../selectors/scaleselector.coffee'
 OctaveSelector = require '../../selectors/octaveselector.coffee'
+
+Octave = new Firebase(HOST + 'octave')
+Scale = new Firebase(HOST + 'scale')
+KeySync = new Firebase(HOST + 'keysync')
 
 # Maps keycodes to the index of the note that key should play.
 # Eg. A = 65 = root note in the scale = index 0
@@ -35,6 +40,21 @@ Keyboard = Backbone.View.extend({
 
     @num_notes = 8
     @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
+
+    Octave.on 'child_added', (data) =>
+      val = data.val()
+      if val
+        @selectors.octave.set(val)
+
+    Scale.on 'child_added', (data) =>
+      val = data.val()
+      if val
+        @selectors.scale.set(val)
+
+    KeySync.on 'child_added', (data) =>
+      val = data.val()
+      if val
+        @selectors.key.set(val)
 
   render: ->
     Instrument::render.call(this)

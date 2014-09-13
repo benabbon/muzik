@@ -1,4 +1,6 @@
+{HOST} = require '../constants.coffee'
 Selector = require './selector.coffee'
+fb = new Firebase(HOST + 'keysync')
 
 keys = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E',  'F', 'F#', 'G', 'G#']
 
@@ -14,6 +16,10 @@ KeySelector = Selector.extend({
   onClick: ->
     @idx++
     @key = keys[@idx % keys.length]
+    fb.push(@key)
+    @render()
+
+  set: (@key) ->
     @render()
 
 })
