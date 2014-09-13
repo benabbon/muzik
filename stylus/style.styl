@@ -5,11 +5,14 @@ key_height = 50%
 
 wet_asphalt = #2c3e50
 midnight_blue = #34495e
+concrete = #95a5a6
+asbestos = #7f8c8d
 
 bounce_duration = 0.2s
 
 html, body
   height: 100%
+  overflow: hidden
 
 *
   box-sizing(border-box)
@@ -37,33 +40,59 @@ body
   font-family Helvetica, sans-serif
   margin 0
 
-.keyboard
-  height: 50%
-  width: 50%
+.menu
+  height: 80px
+  padding: 10px
+  width: 100%
+  background: concrete
+  position: fixed
+  z-index: 100
+
+.item
+  background: asbestos
+  float: left
+  margin-right: 20px
+  padding: 10px
+  font-size: 20px
+  cursor: pointer
+  margin-top: 6px
+
+.main
+  height: calc(100% - 80px)
   position: absolute
-  top: 0
-  left: 0
+  width: 100%
+  top: 80px
+
+.keyboard
+  height: 100%
+  width: 100%
+  position: relative
+  float: left
 
 .drums
-  height: 50%
-  width: 50%
-  position: absolute
-  top: 0
-  right: 0
+  height: 100%
+  width: 100%
+  position: relative
   background: midnight_blue
   display: flex
   flex-direction: row
   flex-wrap: wrap
   justify-content: space-between
+  float: left
 
 .drum
   width: 25%
   height: 25%
   margin-left: 12.5%
   margin-right: 12.5%
+  transition: all 0.2s ease
+  cursor: pointer
 
-.active
+.active.button
   height: 75% !important
+
+.active.drum
+  transform: scale(1.2) !important
 
 .column
   height: 100%

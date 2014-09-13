@@ -37,7 +37,6 @@ Key = Backbone.View.extend({
   play: ->
     @button.addClass('active')
     setTimeout((=> @button.removeClass('active')), 250)
-    # @button.animate(height: '+=50').delay(100).animate(height: '-=50')
 
     request = JSON.stringify({
       note: root + scales.major[@index]
