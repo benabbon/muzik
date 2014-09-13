@@ -5,7 +5,7 @@ template = '''
 <div class="button"></div>
 '''
 
-socket = io.connect(HOST)
+fb = new Firebase('https://muzik.firebaseio.com/keyboard')
 
 Key = Backbone.View.extend({
   tagName: 'div'
@@ -35,13 +35,13 @@ Key = Backbone.View.extend({
 
     note = ROOT_NOTE + (octave * NOTES_PER_OCTAVE) + key + scale[@index]
 
-    request = JSON.stringify({
+    request = {
       note: note
       velocity: 100
       start: 0
-    })
+    }
 
-    socket.emit('keyboard', request)
+    fb.push(request)
 
   onClick: ->
     @play()

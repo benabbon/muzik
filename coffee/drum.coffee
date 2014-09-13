@@ -1,10 +1,8 @@
 spectrum = require './spectrum.coffee'
 
-{HOST} = require './constants.coffee'
-
 codes = [24, 26, 27, 30]
 
-socket = io.connect(HOST)
+fb = new Firebase('https://muzik.firebaseio.com/drums')
 
 Drum = Backbone.View.extend({
   tagName: 'div'
@@ -27,15 +25,13 @@ Drum = Backbone.View.extend({
 
     note = codes[@index] + 12
 
-    request = JSON.stringify({
+    request = {
       note: note
       velocity: 100
       start: 0
-    })
+    }
 
-    console.log request
-
-    socket.emit('drums', request)
+    fb.push(request)
 
   onClick: ->
     @play()

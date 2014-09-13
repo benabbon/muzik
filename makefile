@@ -8,4 +8,7 @@ rsync:
 	rsync -Rr \
 		index.html css js \
 		vendor/jquery/dist/jquery.js \
+		vendor/jquery.scrollTo/jquery.scrollTo.js \
+		vendor/underscore/underscore.js \
+		vendor/backbone/backbone.js \
 		site

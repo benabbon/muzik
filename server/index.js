@@ -1,7 +1,12 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var Firebase = require('firebase');
 var midi = require('midi');
+
+var root = 'https://muzik.firebaseio.com/';
+
+var api = {
+  keyboard: new Firebase(root + 'keyboard'),
+  drums: new Firebase(root + 'drums')
+};
 
 var outputs = {
   keyboard: new midi.output(),
@@ -11,39 +16,20 @@ var outputs = {
 outputs.keyboard.openVirtualPort('keyboard');
 outputs.drums.openVirtualPort('drums');
 
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
-
 var Codes = {
   START: 144
 };
 
-io.sockets.on('connection', function(socket) {
-  console.log('Connection');
-
-  socket.on('keyboard', function(request) {
-    request = JSON.parse(request);
-    try {
-      outputs.keyboard.sendMessage([Codes.START, request.note, request.velocity]);
-    }
-    catch(error) {
-      console.error(error);
-    }
-  });
-
-  socket.on('drums', function(request) {
-    request = JSON.parse(request);
-    console.log(request);
-    try {
-      outputs.drums.sendMessage([Codes.START, request.note, request.velocity]);
-    }
-    catch(error) {
-      console.error(error);
-    }
-  });
+api.keyboard.on('child_added', function(data) {
+  var val = data.val();
+  if (val) {
+    outputs.keyboard.sendMessage([Codes.START, val.note, val.velocity]);
+  }
 });
 
-http.listen(3000, function(){
-  console.log('Listening on port 3000');
+api.drums.on('child_added', function(data) {
+  var val = data.val();
+  if (val) {
+    outputs.drums.sendMessage([Codes.START, val.note, val.velocity]);
+  }
 });
