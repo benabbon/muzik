@@ -1,13 +1,11 @@
 spectrum = require './spectrum.coffee'
-{NOTES_PER_OCTAVE, ROOT_NOTE} = require './constants.coffee'
-
-host = 'http://localhost:3000'
+{NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require './constants.coffee'
 
 template = '''
 <div class="button"></div>
 '''
 
-socket = io.connect(host)
+socket = io.connect(HOST)
 
 Key = Backbone.View.extend({
   tagName: 'div'
@@ -43,7 +41,7 @@ Key = Backbone.View.extend({
       start: 0
     })
 
-    socket.emit('sound', request)
+    socket.emit('keyboard', request)
 
   onClick: ->
     @play()
