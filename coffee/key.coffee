@@ -37,7 +37,7 @@ Key = Backbone.View.extend({
     @button.addClass('active')
     setTimeout((=> @button.removeClass('active')), 250)
 
-    key = parent.keyselector.idx
+    key = @parent.keyselector.idx
     note = A0 + (octave * notes_per_octave) + key + scales.major[@index]
 
     request = JSON.stringify({

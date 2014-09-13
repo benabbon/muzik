@@ -17,8 +17,9 @@ Keyboard = Backbone.View.extend({
   className: 'keyboard'
 
   initialize: ->
-    @keys = (new Key({index: i, parent: this}) for i in [0...7])
+    that = this
     @keyselector = new KeySelector()
+    @keys = (new Key({index: i, parent: that}) for i in [0...7])
 
   render: ->
     for key in @keys
