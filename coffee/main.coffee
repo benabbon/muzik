@@ -11,8 +11,7 @@ keymap =
   70: 3
   71: 4
   72: 5
-  73: 6
-  74: 7
+  74: 6
 
 $(document).ready ->
   for i in [0...7]
@@ -22,5 +21,6 @@ $(document).ready ->
 
   $('body').on 'keydown', (event) ->
     index = keymap[event.keyCode]
+    console.log index, keys[index]
     if index and keys[index]
       keys[index].play()

@@ -1,4 +1,4 @@
-host = 'http://158.130.167.110:8084/pennApps/receive'
+host = 'ws://158.130.167.110:8084/pennApps/s_receive'
 
 template = '''
 <div class="button"></div>
@@ -23,6 +23,8 @@ spectrum = [
   '#9b59b6'
 ]
 
+socket = new WebSocket(host)
+
 Key = Backbone.View.extend({
   tagName: 'div'
   className: 'column'
@@ -36,22 +38,31 @@ Key = Backbone.View.extend({
 
   render: (index, colour) ->
     @$el.html(template)
-    @$('.button').css(background: @colour)
+    this.button = @$('.button')
+    @button.css(background: @colour)
     return this
 
   play: ->
-    request = {
+    @button.addClass('active')
+    setTimeout((=> @button.removeClass('active')), 250)
+    # @button.animate(height: '+=50').delay(100).animate(height: '-=50')
+
+    request = JSON.stringify({
       note: root + scales.major[@index]
       velocity: 100
       start: 0
-    }
-
-    $.ajax({
-      method: 'POST'
-      url: host
-      data: JSON.stringify(request)
-      dataType: 'json'
     })
+
+    console.log request
+
+    socket.send(request)
+
+    # $.ajax({
+    #   method: 'POST'
+    #   url: host
+    #   data: request
+    #   dataType: 'json'
+    # })
 
   onClick: ->
     @play()
