@@ -46,16 +46,7 @@ Key = Backbone.View.extend({
       start: 0
     })
 
-    console.log request
-
     socket.emit('sound', request)
-
-    # $.ajax({
-    #   method: 'POST'
-    #   url: host
-    #   data: request
-    #   dataType: 'json'
-    # })
 
   onClick: ->
     @play()
