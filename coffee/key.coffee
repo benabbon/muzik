@@ -39,14 +39,12 @@ Key = Backbone.View.extend({
     @$('.button').css(background: @colour)
     return this
 
-  onClick: ->
+  play: ->
     request = {
       note: root + scales.major[@index]
       velocity: 100
       start: 0
     }
-
-    console.log request
 
     $.ajax({
       method: 'POST'
@@ -54,6 +52,9 @@ Key = Backbone.View.extend({
       data: JSON.stringify(request)
       dataType: 'json'
     })
+
+  onClick: ->
+    @play()
 })
 
 module.exports = Key
