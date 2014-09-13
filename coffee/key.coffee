@@ -1,14 +1,11 @@
 spectrum = require './spectrum.coffee'
+{NOTES_PER_OCTAVE, ROOT_NOTE} = require './constants.coffee'
 
 host = 'http://localhost:3000'
 
 template = '''
 <div class="button"></div>
 '''
-
-A0 = 21
-octave = 3
-notes_per_octave = 12
 
 socket = io.connect(host)
 
@@ -35,10 +32,10 @@ Key = Backbone.View.extend({
     setTimeout((=> @button.removeClass('active')), 250)
 
     key = @parent.keyselector.idx
-
     scale = @parent.scaleselector.scale.notes
+    octave = @parent.octaveselector.octave
 
-    note = A0 + (octave * notes_per_octave) + key + scale[@index]
+    note = ROOT_NOTE + (octave * NOTES_PER_OCTAVE) + key + scale[@index]
 
     request = JSON.stringify({
       note: note
