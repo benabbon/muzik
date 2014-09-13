@@ -8,6 +8,13 @@ spectrum = [
   '#9b59b6'
 ]
 
+C = 24
+
+# major
+notes = [0, 2, 4, 5, 7, 9, 11, 12]
+
+root = C
+
 $(document).ready ->
   for colour, i in spectrum
     column = $('<div>').addClass('column')
@@ -17,14 +24,20 @@ $(document).ready ->
       .css({background: colour})
       .attr('data-index', i)
       .on('click', ->
-        console.log $(this).attr('data-index')
+        idx = +$(this).attr('data-index')
+
+        request = {
+          note: root + notes[idx]
+          velocity: 100
+          start: 0
+        }
+
+        console.log request
       )
       .on('mouseenter', ->
-        console.log 'enter'
         $(this).find('.overlay').show()
       )
       .on('mouseout', ->
-        console.log 'out'
         $(this).find('.overlay').hide()
       )
 
