@@ -15,6 +15,10 @@ keymap =
   74: 6
   75: 7
 
+template = '''
+  <div class="selectors"></div>
+'''
+
 Keyboard = Backbone.View.extend({
   tagName: 'div'
   className: 'keyboard'
@@ -30,18 +34,22 @@ Keyboard = Backbone.View.extend({
     @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
 
   render: ->
+    @$el.html(template)
+
     for key in @keys
       key.render()
       @$el.append(key.render().$el)
 
-    @keyselector.render()
-    @$el.append(@keyselector.$el)
+    wrap = @$('.selectors')
 
-    @scaleselector.render()
-    @$el.append(@scaleselector.$el)
+    @keyselector.render()
+    wrap.append(@keyselector.$el)
 
     @octaveselector.render()
-    @$el.append(@octaveselector.$el)
+    wrap.append(@octaveselector.$el)
+
+    @scaleselector.render()
+    wrap.append(@scaleselector.$el)
 
     return this
 

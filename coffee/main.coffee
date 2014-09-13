@@ -30,4 +30,8 @@ $(document).ready ->
       marginBottom: h
     })
 
+    s = $('.selectors')
+
+    s.css({left: (w.width() - s.width()) / 2})
+
   w.resize()

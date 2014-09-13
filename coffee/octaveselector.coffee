@@ -2,7 +2,7 @@
 
 OctaveSelector = Backbone.View.extend({
   tagName: 'div'
-  className: 'octaveselector'
+  className: 'selector'
 
   events:
     'click': 'onClick'
@@ -11,7 +11,7 @@ OctaveSelector = Backbone.View.extend({
     @octave = 3
 
   render: ->
-    this.$el.text("Octave #{@octave}")
+    this.$el.text(@octave)
     return this
 
   onClick: ->

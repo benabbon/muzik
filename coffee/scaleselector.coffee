@@ -1,6 +1,6 @@
 ScaleSelector = Backbone.View.extend({
   tagName: 'div'
-  className: 'scaleselector'
+  className: 'selector'
 
   events:
     'click': 'onClick'

@@ -2,7 +2,7 @@ keys = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E',  'F', 'F#', 'G', 'G#']
 
 KeySelector = Backbone.View.extend({
   tagName: 'div'
-  className: 'keyselector'
+  className: 'selector'
 
   events:
     'click': 'onClick'
