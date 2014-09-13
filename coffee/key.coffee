@@ -1,4 +1,4 @@
-host = 'ws://158.130.167.110:8084/pennApps/s_receive'
+host = 'ws://158.130.167.110:8084/pennApps/sreceive'
 
 template = '''
 <div class="button"></div>

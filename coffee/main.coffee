@@ -1,26 +1,9 @@
-Key = require './key.coffee'
-
-keys = []
-
-# Maps keycodes to the index of the note that key should play.
-# Eg. A = 65 = root note in the scale = index 0
-keymap =
-  65: 0
-  83: 1
-  68: 2
-  70: 3
-  71: 4
-  72: 5
-  74: 6
+Keyboard = require './keyboard.coffee'
 
 $(document).ready ->
-  for i in [0...7]
-    key = new Key(index: i)
-    keys.push(key)
-    key.render().$el.appendTo('.buttons')
+  keyboard = new Keyboard()
+  keyboard.render()
+  keyboard.$el.appendTo('body')
 
   $('body').on 'keydown', (event) ->
-    index = keymap[event.keyCode]
-    console.log index, keys[index]
-    if index and keys[index]
-      keys[index].play()
+    keyboard.play(event.keyCode)
