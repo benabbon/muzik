@@ -1,6 +1,6 @@
-{HOST} = require '../constants.coffee'
-Selector = require './selector.coffee'
-{MAX_OCTAVE} = require '../constants.coffee'
+{HOST} = require '../constants'
+Selector = require './selector'
+{MAX_OCTAVE} = require '../constants'
 fb = new Firebase(HOST + 'octave')
 
 OctaveSelector = Selector.extend({

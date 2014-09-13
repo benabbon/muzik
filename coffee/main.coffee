@@ -1,5 +1,5 @@
-Keyboard = require './instruments/keyboard/keyboard.coffee'
-Drums = require './instruments/drums/drums.coffee'
+Keyboard = require './instruments/keyboard/keyboard'
+Drums = require './instruments/drums/drums'
 
 $(document).ready ->
   main = $('.main')

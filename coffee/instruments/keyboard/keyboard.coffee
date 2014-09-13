@@ -1,9 +1,9 @@
-{HOST} = require '../../constants.coffee'
-Instrument = require '../instrument.coffee'
-Key = require './key.coffee'
-KeySelector = require '../../selectors/keyselector.coffee'
-ScaleSelector = require '../../selectors/scaleselector.coffee'
-OctaveSelector = require '../../selectors/octaveselector.coffee'
+{HOST} = require '../../constants'
+Instrument = require '../instrument'
+Key = require './key'
+KeySelector = require '../../selectors/keyselector'
+ScaleSelector = require '../../selectors/scaleselector'
+OctaveSelector = require '../../selectors/octaveselector'
 
 Octave = new Firebase(HOST + 'octave')
 Scale = new Firebase(HOST + 'scale')

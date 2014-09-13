@@ -1,6 +1,6 @@
-Button = require '../button.coffee'
-spectrum = require '../../spectrum.coffee'
-{HOST} = require '../../constants.coffee'
+Button = require '../button'
+spectrum = require '../../spectrum'
+{HOST} = require '../../constants'
 
 codes = [24, 26, 27, 30]
 

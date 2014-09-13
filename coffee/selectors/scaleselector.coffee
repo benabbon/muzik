@@ -1,5 +1,5 @@
-{HOST} = require '../constants.coffee'
-Selector = require './selector.coffee'
+{HOST} = require '../constants'
+Selector = require './selector'
 fb = new Firebase(HOST + 'scale')
 
 ScaleSelector = Selector.extend({

@@ -1,6 +1,6 @@
-Instrument = require '../instrument.coffee'
+Instrument = require '../instrument'
 
-Drum = require './drum.coffee'
+Drum = require './drum'
 
 keymap =
   65: 0

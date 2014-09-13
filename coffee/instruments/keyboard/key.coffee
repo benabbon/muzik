@@ -1,6 +1,6 @@
-Button = require '../button.coffee'
-spectrum = require '../../spectrum.coffee'
-{NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require '../../constants.coffee'
+Button = require '../button'
+spectrum = require '../../spectrum'
+{NOTES_PER_OCTAVE, ROOT_NOTE, HOST} = require '../../constants'
 
 template = '''
 <div class="button"></div>
