@@ -28,8 +28,8 @@ Keyboard = Backbone.View.extend({
 
     @selectors =
       key: new KeySelector()
-      scale: new ScaleSelector()
       octave: new OctaveSelector()
+      scale: new ScaleSelector()
 
     @num_notes = 8
     @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
