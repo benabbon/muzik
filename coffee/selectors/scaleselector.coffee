@@ -1,10 +1,6 @@
-ScaleSelector = Backbone.View.extend({
-  tagName: 'div'
-  className: 'selector'
+Selector = require './selector.coffee'
 
-  events:
-    'click': 'onClick'
-
+ScaleSelector = Selector.extend({
   initialize: ->
     @scales = [
       {

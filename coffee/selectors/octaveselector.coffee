@@ -1,12 +1,7 @@
-{MAX_OCTAVE} = require './constants.coffee'
+Selector = require './selector.coffee'
+{MAX_OCTAVE} = require '../constants.coffee'
 
-OctaveSelector = Backbone.View.extend({
-  tagName: 'div'
-  className: 'selector'
-
-  events:
-    'click': 'onClick'
-
+OctaveSelector = Selector.extend({
   initialize: ->
     @octave = 3
 

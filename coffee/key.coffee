@@ -29,9 +29,9 @@ Key = Backbone.View.extend({
     @button.addClass('active')
     setTimeout((=> @button.removeClass('active')), 250)
 
-    key = @parent.keyselector.idx
-    scale = @parent.scaleselector.scale.notes
-    octave = @parent.octaveselector.octave
+    key = @parent.selectors.key.idx
+    scale = @parent.selectors.scale.scale.notes
+    octave = @parent.selectors.octave.octave
 
     note = ROOT_NOTE + (octave * NOTES_PER_OCTAVE) + key + scale[@index]
 

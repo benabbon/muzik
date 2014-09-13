@@ -1,7 +1,7 @@
 Key = require './key.coffee'
-KeySelector = require './keyselector.coffee'
-ScaleSelector = require './scaleselector.coffee'
-OctaveSelector = require './octaveselector.coffee'
+KeySelector = require './selectors/keyselector.coffee'
+ScaleSelector = require './selectors/scaleselector.coffee'
+OctaveSelector = require './selectors/octaveselector.coffee'
 
 # Maps keycodes to the index of the note that key should play.
 # Eg. A = 65 = root note in the scale = index 0
@@ -26,9 +26,10 @@ Keyboard = Backbone.View.extend({
   initialize: ->
     that = this
 
-    @keyselector = new KeySelector()
-    @scaleselector = new ScaleSelector()
-    @octaveselector = new OctaveSelector()
+    @selectors =
+      key: new KeySelector()
+      scale: new ScaleSelector()
+      octave: new OctaveSelector()
 
     @num_notes = 8
     @keys = (new Key({index: i, parent: that}) for i in [0...@num_notes])
@@ -42,14 +43,9 @@ Keyboard = Backbone.View.extend({
 
     wrap = @$('.selectors')
 
-    @keyselector.render()
-    wrap.append(@keyselector.$el)
-
-    @octaveselector.render()
-    wrap.append(@octaveselector.$el)
-
-    @scaleselector.render()
-    wrap.append(@scaleselector.$el)
+    for k, selector of @selectors
+      selector.render()
+      wrap.append(selector.$el)
 
     return this
 

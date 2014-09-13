@@ -1,12 +1,8 @@
+Selector = require './selector.coffee'
+
 keys = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E',  'F', 'F#', 'G', 'G#']
 
-KeySelector = Backbone.View.extend({
-  tagName: 'div'
-  className: 'selector'
-
-  events:
-    'click': 'onClick'
-
+KeySelector = Selector.extend({
   initialize: ->
     @idx = 0
     @key = keys[0]
