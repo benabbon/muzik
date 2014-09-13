@@ -5,7 +5,7 @@ template = '''
 <div class="button"></div>
 '''
 
-fb = new Firebase(HOST + 'keyboard')
+fb = new Firebase(HOST + 'instrument')
 
 Key = Backbone.View.extend({
   tagName: 'div'
@@ -36,6 +36,7 @@ Key = Backbone.View.extend({
     note = ROOT_NOTE + (octave * NOTES_PER_OCTAVE) + key + scale[@index]
 
     request = {
+      instrument: 'keyboard'
       note: note
       velocity: 100
       start: 0

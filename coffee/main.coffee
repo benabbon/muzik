@@ -21,6 +21,10 @@ $(document).ready ->
     t.on 'click', ->
       $.scrollTo(target, 300, {offset: {top: -80}})
 
+  $('.add').on 'click', ->
+    kb = new Keyboard()
+    instruments.push(kb)
+
   w = $ window
 
   w.resize ->

@@ -4,8 +4,7 @@ var midi = require('midi');
 var root = 'https://muzik.firebaseio.com/';
 
 var api = {
-  keyboard: new Firebase(root + 'keyboard'),
-  drums: new Firebase(root + 'drums')
+  instrument: new Firebase(root + 'instrument'),
 };
 
 var outputs = {
@@ -20,16 +19,9 @@ var Codes = {
   START: 144
 };
 
-api.keyboard.on('child_added', function(data) {
+api.instrument.on('child_added', function(data) {
   var val = data.val();
   if (val) {
-    outputs.keyboard.sendMessage([Codes.START, val.note, val.velocity]);
-  }
-});
-
-api.drums.on('child_added', function(data) {
-  var val = data.val();
-  if (val) {
-    outputs.drums.sendMessage([Codes.START, val.note, val.velocity]);
+    outputs[val.instrument].sendMessage([Codes.START, val.note, val.velocity]);
   }
 });

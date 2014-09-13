@@ -3,7 +3,7 @@ spectrum = require '../../spectrum.coffee'
 
 codes = [24, 26, 27, 30]
 
-fb = new Firebase(HOST + 'drums')
+fb = new Firebase(HOST + 'instrument')
 
 Drum = Backbone.View.extend({
   tagName: 'div'
@@ -27,6 +27,7 @@ Drum = Backbone.View.extend({
     note = codes[@index] + 12
 
     request = {
+      instrument: 'drums'
       note: note
       velocity: 100
       start: 0
