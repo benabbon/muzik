@@ -12,6 +12,7 @@ keymap =
   71: 4
   72: 5
   74: 6
+  75: 7
 
 Keyboard = Backbone.View.extend({
   tagName: 'div'
@@ -40,7 +41,7 @@ Keyboard = Backbone.View.extend({
 
   play: (code) ->
     index = keymap[code]
-    if index and @keys[index]?
+    if index? and @keys[index]?
       @keys[index].play()
 
 })
