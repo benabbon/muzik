@@ -5,6 +5,8 @@ Instrument = Backbone.View.extend({
 
   render: ->
     @$el.addClass('instrument')
+    @$el.attr('id', @id)
+
 })
 
 module.exports = Instrument

@@ -6,7 +6,7 @@ $(document).ready ->
 
   piano = new Keyboard(name: 'piano')
   synth = new Keyboard(name: 'synth')
-  drums = new Drums()
+  drums = new Drums(name: 'drum')
 
   active = piano
 
@@ -18,11 +18,17 @@ $(document).ready ->
   $('body').on 'keydown', (event) ->
     active.play(event.keyCode)
 
-  $('.menu .item').each ->
+  $('body').on 'keyup', (event) ->
+    active.stop(event.keyCode)
+
+  $('.menu .item').each (i) ->
     t = $ this
     target = t.attr('data-target')
-    t.on 'click', ->
-      $.scrollTo(target, 300, {offset: {top: -80}})
+    ((i) ->
+      t.on 'click', ->
+        active = instruments[i]
+        $.scrollTo(target, 300, {offset: {top: -80}})
+    )(i)
 
   $('.add').on 'click', ->
     kb = new Keyboard()

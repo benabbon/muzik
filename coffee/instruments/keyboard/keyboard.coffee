@@ -59,7 +59,6 @@ Keyboard = Backbone.View.extend({
   render: ->
     Instrument::render.call(this)
 
-    @$el.attr('id', @id)
     @$el.html(template)
 
     for key in @keys
@@ -78,6 +77,11 @@ Keyboard = Backbone.View.extend({
     index = keymap[code]
     if index? and @keys[index]?
       @keys[index].play()
+
+  stop: (code) ->
+    index = keymap[code]
+    if index? and @keys[index]?
+      @keys[index].stop()
 
 })
 
